@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $db = mysqli_connect("localhost", "root", "", "mailing") 
                 or Utils::json_response(["message" => "Server Error: Database config is possibly wrong."], 500);
                 // . mysqli_connect_error()
-            if(!isset($_POST['standardized'])){
+            if(isset($_POST['standardized'])){
                 $street = $valRes['street'];
                 $city = $valRes['city'];
                 $state = $valRes['state'];
