@@ -9,8 +9,8 @@ use SmartyStreets\PhpSdk\US_Street\Lookup;
 
 class Validator {
     public function validate(string $street, string $city, string $state, string $zip) {                                                                                             
-        $authID = "76dcfe78-8452-2077-26e2-7daf57e4b55d";                                                               
-        $authToken = "fpvRbmj4rQFkKkmPAqbP";                                                                            
+        $authID = "MockId";                                                               
+        $authToken = "MockToken";                                                                            
                                                                                                                         
         $staticCredentials = new StaticCredentials($authID, $authToken);                                                
         $client = (new ClientBuilder($staticCredentials))->buildUsStreetApiClient();                                    
