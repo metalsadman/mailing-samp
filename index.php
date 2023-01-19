@@ -17,7 +17,7 @@
 <body>
     <div class="container d-flex justify-content-center">
         <form class="m-1" id="address-form">
-            <div class="card shadow-sm" style="width: 40rem;">
+            <div class="card shadow-sm col-12">
                 <div class="card-body  m-1">
                     <div class="fs-4 fw-semibold">Address Validator</div>
                     <span>Validate/Standardizes addresses using USPS</span>
