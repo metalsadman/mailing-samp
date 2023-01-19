@@ -8,7 +8,7 @@ use SmartyStreets\PhpSdk\ClientBuilder;
 use SmartyStreets\PhpSdk\US_Street\Lookup; 
 
 class Validator {
-    public function validate(string $street, string $city, string $state, string $zip) {                                                                                             
+    public function validate(string $add1, string $add2, string $city, string $state, string $zip) {                                                                                             
         $authID = "76dcfe78-8452-2077-26e2-7daf57e4b55d";                                                               
         $authToken = "fpvRbmj4rQFkKkmPAqbP";                                                                            
                                                                                                                         
@@ -16,7 +16,8 @@ class Validator {
         $client = (new ClientBuilder($staticCredentials))->buildUsStreetApiClient();                                    
                                                                                                                         
         $lookup = new Lookup();                                                                                         
-        $lookup->setStreet($street);                                                                               
+        $lookup->setStreet($add1);                                                                               
+        $lookup->setStreet2($add2);                                                                               
         $lookup->setCity($city);
         $lookup->setState($state);
         $lookup->setZipcode($zip);
@@ -44,12 +45,23 @@ class Validator {
 
         try{
             $firstCandidate = $results[0];
+            // api doesn't have getAddress1 and getAddress2 anymore :/
+            // see Candidate.php file
+            $addressLine = explode('ST ', strtoupper($firstCandidate->getDeliveryLine1()));
             return [
-                'street' => $firstCandidate->getDeliveryLine1(),
-                'city' => $firstCandidate->getComponents()->getCityName(),
-                'state' => $firstCandidate->getComponents()->getStateAbbreviation(),
-                'zip' => $firstCandidate->getComponents()->getZipcode(),
+                'address1' => trim($addressLine[0]),
+                'address2' => trim($addressLine[1]),
+                'city' => strtoupper($firstCandidate->getComponents()->getCityName()),
+                'state' => strtoupper($firstCandidate->getComponents()->getStateAbbreviation()),
+                'zip' => strtoupper($firstCandidate->getComponents()->getZipcode()),
             ];
+            // return [
+            //     'address1' => strtoupper($firstCandidate->getDeliveryLine1()),
+            //     'address2' => $firstCandidate->getDeliveryLine2(),
+            //     'city' => strtoupper($firstCandidate->getComponents()->getCityName()),
+            //     'state' => strtoupper($firstCandidate->getComponents()->getStateAbbreviation()),
+            //     'zip' => strtoupper($firstCandidate->getComponents()->getZipcode()),
+            // ];
         }catch(\Exception $e){
             throw new \Exception($e->getMessage());
         }
