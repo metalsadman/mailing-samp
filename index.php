@@ -119,7 +119,6 @@
             for (const [key, val]  of formData.entries()) {                
                 key !=='btnradio' && (origAddress[key] = val)
             }
-            console.log({ origAddress })
 
             xhr.onload = () => {
                 submitBtn.disabled = false;
@@ -138,12 +137,8 @@
         }
 
         const addDisplays = document.querySelectorAll('#addDisplay')
-        console.log({addDisplays})
         function displayData(data){            
-                    console.log(data)
-                    // add1.textContent = data.address1
             Object.keys(data).forEach((k,i) => {
-                console.log('k at '+i, k )
                 addDisplays[i].textContent = data[k]
             })
         }
@@ -168,10 +163,6 @@
             Object.keys(params).forEach(k => {
                 fd.append(k, params[k])
             })
-
-            for (let pair of fd.entries()) {
-                console.log(`FormData-> ${pair[0]}: ${pair[1]}`)
-            }
             
             const xhr = new XMLHttpRequest();
             xhr.open("POST", "save.php", true);
