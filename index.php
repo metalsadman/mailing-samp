@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <div>Which address format do you want to save?</div>
-                                    <div class="mb-2">                                        
+                                    <div class="mb-4">                                        
                                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
                                             <label class="btn btn-outline-primary" for="btnradio1" onclick="changeAddressDisplay(0)">ORIGINAL</label>
@@ -89,7 +89,7 @@
                                     <div class="form-group alert alert-danger my-3" role="alert" id="error2" style="display:none;"></div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" onclick="save()" id="saveBtn">Save</button>
+                                    <button type="button" class="btn btn-primary" onclick="save()" id="saveBtn">SAVE</button>
                                 </div>
                             </div>
                         </div>
