@@ -62,6 +62,7 @@
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-4" id="exampleModalLabel">Save Address</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <div>Which address format do you want to save?</div>
@@ -106,11 +107,15 @@
         const orig = document.getElementById('btnradio1');
         const usps = document.getElementById('btnradio2');
         const saveBtn = document.getElementById('saveBtn');
-        let origAddress = {};
-        let uspsAddress = {};
-        let whichAddress = 0;
+        let origAddress,uspsAddress = {}, whichAddress = 0;
         
         function validate(){
+            origAddress = {};
+            uspsAddress = {};
+            whichAddress = 1;
+            successAlertEl.style.display = 'none';
+            usps.checked = true;
+
             const xhr = new XMLHttpRequest();
             xhr.open("POST", "validate.php", true);
             const formData = new FormData(form);
@@ -175,7 +180,7 @@
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     showHideAlert(successAlertEl, errorAlertEl2, message)
                 } else {
-                    showHideAlert(errorAlertE2, successAlertEl, message)
+                    showHideAlert(errorAlertEl2, successAlertEl, message)
                 }
             };
         }
