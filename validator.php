@@ -46,7 +46,8 @@ class Validator {
         try{
             $firstCandidate = $results[0];
             // api doesn't have getAddress1 and getAddress2 anymore :/
-            // see Candidate.php file
+            // see validation\US_Street\Candidate.php file
+            // so I had to improvise to get address 1 and address 2 fields
             $addressLine = explode('ST ', strtoupper($firstCandidate->getDeliveryLine1()));
             return [
                 'address1' => trim($addressLine[0]),
