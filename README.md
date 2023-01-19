@@ -1,9 +1,8 @@
 ## Config
 ```
 Clone the repo
-  Xampp
-  Put the folder in htdocs
-  Execute mailing.sql file in your MYSql database
+  using xampp put the folder in htdocs
+  Execute mailing.sql file in your phpmyadmin to create the database
 ```
   
 ## Run
