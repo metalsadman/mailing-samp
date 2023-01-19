@@ -45,8 +45,11 @@ class Validator {
 
         try{
             $firstCandidate = $results[0];
-            // api doesn't have getAddress1 and getAddress2 anymore :/
+            // Candidate api doesn't have getAddress1() and getAddress2() methods anymore :/
             // see validation\US_Street\Candidate.php file
+            // they only offer getDeliveryLine1() and getDeliveryLine2() now
+            // but getDeliveryLine1 returns both address1 and address2 on the same string
+            // I couldn't find anything from their new api to get each seperately
             // so I had to improvise to get address 1 and address 2 fields
             $addressLine = explode('ST ', strtoupper($firstCandidate->getDeliveryLine1()));
             return [
