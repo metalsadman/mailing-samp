@@ -1,7 +1,6 @@
 <?php
 error_reporting(E_ALL ^ (E_NOTICE | E_DEPRECATED | E_WARNING));
 require_once 'utils.php';
-require_once 'validator.php';
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     Utils::json_response(['message' => "Invalid Request!"], 400);
