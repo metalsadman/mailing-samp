@@ -16,7 +16,7 @@ try{
     if (empty($add1) || empty($add2) || empty($city) || empty($state) || empty($zip)) {
         Utils::json_response(['message' => "All fields are required"], 400);
     }
-    
+
     $apiKey = '391SELFE4369';
     $xml = '<AddressValidateRequest USERID="' . $apiKey . '">';
     $xml .= '<Address ID="0">';
@@ -34,8 +34,9 @@ try{
 
     $xml = simplexml_load_string($response) or Utils::json_response(["message" => "USPS Response error."], 500);
     $validatedAddress = array(
-        'address1' => (string)$xml->Address[0]->Address1,
-        'address2' => (string)$xml->Address[0]->Address2,
+        // switched as stated in the chat to follow the spec of the test.
+        'address1' => (string)$xml->Address[0]->Address2,
+        'address2' => (string)$xml->Address[0]->Address1,
         'city' => (string)$xml->Address[0]->City,
         'state' => (string)$xml->Address[0]->State,
         'zip' => (string)$xml->Address[0]->Zip5, // . '-' . $xml->Address[0]->Zip4
