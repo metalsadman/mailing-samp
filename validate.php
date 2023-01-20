@@ -31,7 +31,7 @@ try{
         $url = 'https://secure.shippingapis.com/ShippingAPI.dll?API=Verify&XML=' . urlencode($xml);
         $response = file_get_contents($url);
 
-        $xml = simplexml_load_string($response) or Utils::json_response(["message" => "USPS Response error."], 500);;
+        $xml = simplexml_load_string($response) or Utils::json_response(["message" => "USPS Response error."], 500);
         $validatedAddress = array(
             'address1' => (string)$xml->Address[0]->Address1,
             'address2' => (string)$xml->Address[0]->Address2,
@@ -39,6 +39,9 @@ try{
             'state' => (string)$xml->Address[0]->State,
             'zip' => (string)$xml->Address[0]->Zip5, // . '-' . $xml->Address[0]->Zip4
         );
+        if($validatedAddress['address1'] == '' || $validatedAddress['city' == '' || $validatedAddress['zip'] == '']){
+            return Utils::json_response(["message" => "Invalid address!"], 400);
+        }
         return Utils::json_response(['data' => $validatedAddress]); 
     }
 }catch(\Exception $e){
