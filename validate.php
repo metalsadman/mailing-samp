@@ -18,6 +18,7 @@ try{
     }
 
     $apiKey = '391SELFE4369';
+    
     $xml = '<AddressValidateRequest USERID="' . $apiKey . '">';
     $xml .= '<Address ID="0">';
     $xml .= '<Address1>' . $add1 . '</Address1>';
@@ -34,7 +35,8 @@ try{
 
     $xml = simplexml_load_string($response) or Utils::json_response(["message" => "USPS Response error."], 500);
     $validatedAddress = array(
-        // switched as stated in the chat to follow the spec of the test.
+        // STE 6100 always appears on Address1 and 185 BERRY ST at Address2 from their response
+        // switched as to follow the spec of the test.
         'address1' => (string)$xml->Address[0]->Address2,
         'address2' => (string)$xml->Address[0]->Address1,
         'city' => (string)$xml->Address[0]->City,

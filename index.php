@@ -24,7 +24,6 @@
                     <hr/>
                     <div class="row gy-3">
                         <div class="form-group">
-                            <!-- swapped values as it's already standard being Suite 6100 as Adress Line 1 and 185 Berry St as Address Line 2 -->
                             <label for="address1">Address Line 1</label>
                             <input type="text" class="form-control mt-2" id="address1" name="address1" value="Suite 6100">
                         </div>
