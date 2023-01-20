@@ -24,12 +24,13 @@
                     <hr/>
                     <div class="row gy-3">
                         <div class="form-group">
+                            <!-- swapped values as it's already standard being Suite 6100 as Adress Line 1 and 185 Berry St as Address Line 2 -->
                             <label for="address1">Address Line 1</label>
-                            <input type="text" class="form-control mt-2" id="address1" name="address1" value="Suite 6100">
+                            <input type="text" class="form-control mt-2" id="address1" name="address1" value="185 Berry St">
                         </div>
                         <div class="form-group">
                             <label for="address2">Address Line 2</label>
-                            <input type="text" class="form-control mt-2" id="address2" name="address2" value="185 Berry St">
+                            <input type="text" class="form-control mt-2" id="address2" name="address2" value="Suite 6100">
                         </div>
                         <div class="form-group">
                             <label for="city">City</label>
